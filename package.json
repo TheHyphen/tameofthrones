@@ -1,0 +1,28 @@
+{
+  "name": "tameofthrones",
+  "version": "1.0.0",
+  "description": "A Tame Of Thrones Challenege",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava",
+    "test:watch": "ava --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thehyphen/tameofthrones.git"
+  },
+  "keywords": [
+    "everest",
+    "engineering",
+    "challenge"
+  ],
+  "author": "mdfaizuddin15@gmail.com <Mohammed Faizuddin>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thehyphen/tameofthrones/issues"
+  },
+  "homepage": "https://github.com/thehyphen/tameofthrones#readme",
+  "devDependencies": {
+    "ava": "^1.0.1"
+  }
+}
