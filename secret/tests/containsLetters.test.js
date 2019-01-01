@@ -26,4 +26,12 @@ test("should handle edge cases", t => {
   t.false(containsLetters("abc"));
   t.false(containsLetters(null, "abc"));
   t.false(containsLetters(undefined, "abc"));
+  t.false(containsLetters({}, "abc"));
+  t.false(containsLetters([], "abc"));
+  t.false(containsLetters({}, {}));
+  t.false(containsLetters([], []));
+  t.false(containsLetters({}, []));
+  t.false(containsLetters([], {}));
+  t.false(containsLetters("abc", []));
+  t.false(containsLetters("abc", {}));
 });
