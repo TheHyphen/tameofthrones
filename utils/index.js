@@ -17,5 +17,18 @@ const characterCount = (character, string) => {
 };
 exports.characterCount = characterCount;
 
-const characterHashMap = string => {};
+const characterHashMap = string => {
+  if (!isStringLike(string)) {
+    return {};
+  }
+  return string
+    .toString()
+    .split("")
+    .reduce((acc, character) => {
+      return {
+        ...acc,
+        [character]: (acc[character] || 0) + 1
+      };
+    }, {});
+};
 exports.characterHashMap = characterHashMap;
