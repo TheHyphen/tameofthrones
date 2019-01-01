@@ -23,6 +23,10 @@
   },
   "homepage": "https://github.com/thehyphen/tameofthrones#readme",
   "devDependencies": {
-    "ava": "^1.0.1"
+    "ava": "^1.0.1",
+    "sinon": "^7.2.2"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.9"
   }
 }
