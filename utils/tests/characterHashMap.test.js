@@ -10,10 +10,10 @@ test("get correct hash map", t => {
     b: 1,
     c: 1
   });
-  t.deepEqual(characterHashMap("aabbcccc"), {
-    a: 2,
+  t.deepEqual(characterHashMap("aabbccccaa"), {
+    a: 4,
     b: 2,
-    c: 3
+    c: 4
   });
 });
 
