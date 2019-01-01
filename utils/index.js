@@ -16,3 +16,6 @@ const characterCount = (character, string) => {
   return matches && matches.length ? matches.length : 0;
 };
 exports.characterCount = characterCount;
+
+const characterHashMap = string => {};
+exports.characterHashMap = characterHashMap;
