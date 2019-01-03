@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "A Tame Of Thrones Challenege",
   "main": "index.js",
+  "bin": "index.js",
+  "preferGlobal": true,
   "scripts": {
     "test": "ava",
     "test:watch": "ava --watch"
