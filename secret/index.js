@@ -1,4 +1,8 @@
-const { characterCount, characterHashMap } = require("./../utils");
+const {
+  characterCount,
+  characterHashMap,
+  isStringLike
+} = require("./../utils");
 const readlineSync = require("readline-sync");
 
 const containsLetters = (needle, haystack) => {
@@ -13,31 +17,70 @@ const containsLetters = (needle, haystack) => {
 };
 exports.containsLetters = containsLetters;
 
-const getInputs = () => {
-  console.log("Enter messages for King Shah.");
-  console.log(
-    `
-Press enter after each message to submit.
-Submit an empty message to complete submissions
+const isInputValid = (input, kingdoms) => {
+  if (!isStringLike(input)) {
+    return false;
+  }
+  const parts = input.toString().split(",");
+  if (parts.length < 2) {
+    return false;
+  }
+  const kingdom = parts[0];
+  if (
+    kingdoms.map(k => k.toLowerCase()).indexOf(kingdom.toLowerCase().trim()) !==
+    -1
+  ) {
+    return true;
+  }
+  return false;
+};
 
-Eg: Air, aabbccdd
-------------------------------------
-`
-  );
+const getInputHashes = inputs => {
+  const normalized = inputs.map(input => input.split(",").map(i => i.trim()));
+  return normalized.reduce((acc, input) => {
+    return {
+      ...acc,
+      [input[0]]: input[1]
+    };
+  }, {});
+};
+
+const getInputs = kingdoms => {
+  if (!Array.isArray(kingdoms) || !kingdoms.every(isStringLike)) {
+    throw new Error("kingdoms must be an array of strings");
+  }
+  console.log("Enter messages for King Shah:");
   const inputs = [];
   while (true) {
     const input = readlineSync.question("");
     if (input === "") {
       break;
     }
-    inputs.push(input);
+    if (isInputValid(input, kingdoms)) {
+      inputs.push(input);
+      if (inputs.length >= kingdoms.length) {
+        break;
+      }
+    } else {
+      console.log(`Kingdom not allowed. Try again.`);
+      console.log(`Allowed: ${kingdoms.join(", ")}`);
+    }
   }
   return inputs;
 };
 exports.getInputs = getInputs;
 
-const run = () => {
-  const inputs = getInputs();
-  console.log(inputs);
+exports.run = emblemsHash => {
+  const kingdoms = Object.keys(emblemsHash);
+
+  const inputs = getInputs(kingdoms);
+  const messagesHash = getInputHashes(inputs);
+
+  const inputKingdoms = Object.keys(messagesHash).map(k => k.toLowerCase());
+
+  const allies = inputKingdoms.filter(kingdom =>
+    containsLetters(emblemsHash[kingdom], messagesHash[kingdom])
+  );
+
+  console.log(allies);
 };
-exports.run = run;
