@@ -7,9 +7,14 @@ const getValidatedInputs = emblemsHash => {
     "Enter competing Kingdoms (separate with a space): "
   );
   console.log("\n");
-  const validParticipants = participants.split(" ").filter(participant => {
-    return typeof emblemsHash[participant] !== "undefined";
-  });
+  const validParticipants = participants
+    .split(" ")
+    .filter(participant => {
+      return typeof emblemsHash[participant.toLowerCase()] !== "undefined";
+    })
+    .filter((participant, idx, self) => {
+      return self.indexOf(participant) === idx;
+    });
   if (validParticipants.length === 0) {
     return getValidatedInputs(emblemsHash);
   }
