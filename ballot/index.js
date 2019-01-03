@@ -58,3 +58,43 @@ const getPollResults = (participants, messages, emblemsHash) => {
   return { scoresHash, alliesHash, highScore };
 };
 exports.getPollResults = getPollResults;
+
+const runBallot = (participants, allies, messages, emblemsHash) => {
+  const ballotMessages = getBallotMessages(participants, allies, messages);
+  const { scoresHash, alliesHash, highScore } = getPollResults(
+    participants,
+    ballotMessages,
+    emblemsHash
+  );
+
+  const tiedParticipants = Object.keys(scoresHash).filter(participant => {
+    return scoresHash[participant] === highScore;
+  });
+
+  if (tiedParticipants.length === 1) {
+    const winner = tiedParticipants[0];
+    return {
+      winner,
+      allies: alliesHash[winner],
+      result: highScore
+    };
+  }
+
+  return runBallot(tiedParticipants, allies, messages, emblemsHash);
+};
+exports.runBallot = runBallot;
+
+const run = (emblemsHash, messages) => {
+  const kingdoms = Object.keys(emblemsHash);
+  const participants = getValidatedInputs(emblemsHash);
+
+  // potential allies are not participants
+  const allies = kingdoms.filter(kingdom => {
+    return participants.indexOf(kingdom) === -1;
+  });
+  const result = runBallot(participants, allies, messages, emblemsHash);
+
+  console.log("King:", result.winner);
+  console.log("Allies:", result.allies.join(" "));
+};
+exports.run = run;
