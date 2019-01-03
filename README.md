@@ -24,7 +24,7 @@ or
 tameofthrones breakerofchains
 ```
 
-### goldencrown Messages from King Shah
+### Messages from King Shah for the Golden Crown
 
 The first mode of the battle asks you to enter messages from King Shah to send to all the Kingdoms.
 
