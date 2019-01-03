@@ -37,7 +37,7 @@ exports.characterHashMap = characterHashMap;
 const pickRandom = (array, count) => {
   const clone = [...array];
   const output = [];
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < (count <= array.length ? count : array.length); i++) {
     const randomIdx = Math.floor(Math.random() * clone.length);
     output.push(clone[randomIdx]);
     clone.splice(randomIdx, 1);
