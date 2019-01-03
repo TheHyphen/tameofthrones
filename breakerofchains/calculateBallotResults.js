@@ -1,5 +1,5 @@
 const { stringHasLetters } = require("../utils");
-const calculateBallotResults = (participants, messages, emblemsHash) => {
+function calculateBallotResults(participants, messages, emblemsHash) {
   const scoresHash = {};
   const alliesHash = {};
   const takenAllies = [];
@@ -23,5 +23,5 @@ const calculateBallotResults = (participants, messages, emblemsHash) => {
     }
   });
   return { scoresHash, alliesHash, highScore };
-};
+}
 module.exports = calculateBallotResults;
