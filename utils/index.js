@@ -4,7 +4,7 @@ const isStringLike = string => {
 };
 exports.isStringLike = isStringLike;
 
-const characterCount = (character, string) => {
+function getCharacterCount(character, string) {
   if (!isStringLike(string) || !isStringLike(character)) {
     return 0;
   }
@@ -15,10 +15,10 @@ const characterCount = (character, string) => {
     .toString()
     .match(new RegExp(character.toString(), "g"));
   return matches && matches.length ? matches.length : 0;
-};
-exports.characterCount = characterCount;
+}
+exports.getCharacterCount = getCharacterCount;
 
-const characterHashMap = string => {
+function getCharacterCountHash(string) {
   if (!isStringLike(string)) {
     return {};
   }
@@ -31,10 +31,10 @@ const characterHashMap = string => {
         [character]: (acc[character] || 0) + 1
       };
     }, {});
-};
-exports.characterHashMap = characterHashMap;
+}
+exports.getCharacterCountHash = getCharacterCountHash;
 
-const pickRandom = (array, count) => {
+function pickRandom(array, count) {
   const clone = [...array];
   const output = [];
   for (let i = 0; i < (count <= array.length ? count : array.length); i++) {
@@ -43,9 +43,25 @@ const pickRandom = (array, count) => {
     clone.splice(randomIdx, 1);
   }
   return output;
-};
+}
 exports.pickRandom = pickRandom;
 
-const flatten = array =>
-  array.reduce((prevArray, currArray) => prevArray.concat(currArray), []);
+function flatten(array) {
+  return array.reduce(
+    (prevArray, currArray) => prevArray.concat(currArray),
+    []
+  );
+}
 exports.flatten = flatten;
+
+function stringHasLetters(needle, haystack) {
+  const needleHashMap = getCharacterCountHash(needle);
+  const lettersInNeedle = Object.keys(needleHashMap);
+  if (lettersInNeedle.length === 0) {
+    return false;
+  }
+  return lettersInNeedle.every(
+    letter => getCharacterCount(letter, haystack) >= needleHashMap[letter]
+  );
+}
+exports.stringHasLetters = stringHasLetters;
