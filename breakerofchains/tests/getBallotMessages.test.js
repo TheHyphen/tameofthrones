@@ -1,5 +1,5 @@
 import test from "ava";
-const { getBallotMessages } = require("./../randomMessages");
+const getBallotMessages = require("./../getBallotMessages");
 
 test("getBallotMessages should return flat messages list", t => {
   const participants = ["air", "water"];
