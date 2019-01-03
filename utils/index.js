@@ -2,6 +2,7 @@ const isStringLike = string => {
   const type = typeof string;
   return type === "string" || type === "number";
 };
+exports.isStringLike = isStringLike;
 
 const characterCount = (character, string) => {
   if (!isStringLike(string) || !isStringLike(character)) {
@@ -32,3 +33,6 @@ const characterHashMap = string => {
     }, {});
 };
 exports.characterHashMap = characterHashMap;
+
+const pickRandom = (array, count) => {};
+exports.pickRandom = pickRandom;
