@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const parseArg = (args, allowed) => {
   const sliced = args.slice(2);
   const firstArg = sliced[0];
