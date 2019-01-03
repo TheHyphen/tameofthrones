@@ -34,5 +34,18 @@ const characterHashMap = string => {
 };
 exports.characterHashMap = characterHashMap;
 
-const pickRandom = (array, count) => {};
+const pickRandom = (array, count) => {
+  const clone = [...array];
+  const output = [];
+  for (let i = 0; i < count; i++) {
+    const randomIdx = Math.floor(Math.random() * clone.length);
+    output.push(clone[randomIdx]);
+    clone.splice(randomIdx, 1);
+  }
+  return output;
+};
 exports.pickRandom = pickRandom;
+
+const flatten = array =>
+  array.reduce((prevArray, currArray) => prevArray.concat(currArray), []);
+exports.flatten = flatten;
