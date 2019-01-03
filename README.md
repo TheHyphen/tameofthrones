@@ -3,28 +3,28 @@
 To start, clone this repo, `npm install` and then simply type one of the supported battle types:
 
 ```
-node index.js secret
+node index.js goldencrown
 ```
 
 or
 
 ```
-node index.js ballot
+node index.js breakerofchains
 ```
 
 You can also link this package globally with `npm link` and the you can just run:
 
 ```
-tameofthrones secret
+tameofthrones goldencrown
 ```
 
 or
 
 ```
-tameofthrones ballot
+tameofthrones breakerofchains
 ```
 
-### Secret Messages from King Shah
+### goldencrown Messages from King Shah
 
 The first mode of the battle asks you to enter messages from King Shah to send to all the Kingdoms.
 
