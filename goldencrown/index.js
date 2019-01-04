@@ -1,10 +1,10 @@
-const { getInputs } = require("./getInputs");
+const { getUserInput } = require("./getUserInput");
 const { stringHasLetters, toLowerCase } = require("./../utils");
 const { emblemsHash } = require("./../data");
 
 function run() {
   const kingdoms = Object.keys(emblemsHash);
-  const messagesHash = getInputs(kingdoms);
+  const messagesHash = getUserInput(kingdoms);
   const inputKingdoms = Object.keys(messagesHash).map(toLowerCase);
 
   const allies = inputKingdoms.filter(kingdom =>

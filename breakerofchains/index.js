@@ -1,10 +1,10 @@
 const { emblemsHash, messages } = require("./../data");
 const runBallot = require("./runBallot");
-const getInputs = require("./getInputs");
+const getUserInput = require("./getUserInput");
 
 function run() {
   const kingdoms = Object.keys(emblemsHash);
-  const participants = getInputs(emblemsHash);
+  const participants = getUserInput(emblemsHash);
 
   // potential allies are not participants
   const allies = kingdoms.filter(kingdom => {
