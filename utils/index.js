@@ -65,3 +65,28 @@ function stringHasLetters(needle, haystack) {
   );
 }
 exports.stringHasLetters = stringHasLetters;
+
+function toLowerCase(string) {
+  return string.toLowerCase();
+}
+exports.toLowerCase = toLowerCase;
+
+function trim(string) {
+  return string.trim();
+}
+exports.trim = trim;
+
+function splitter(char) {
+  return string => string.split(char);
+}
+
+exports.splitter = splitter;
+function isKingdom(input, kingdoms) {
+  return (
+    kingdoms
+      .map(toLowerCase)
+      .map(trim)
+      .indexOf(toLowerCase(trim(input))) !== -1
+  );
+}
+exports.isKingdom = isKingdom;

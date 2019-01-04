@@ -1,5 +1,5 @@
 const readlineSync = require("readline-sync");
-const { isStringLike } = require("./../utils");
+const { isStringLike, splitter, isKingdom } = require("./../utils");
 
 function validate(input, kingdoms) {
   if (!isStringLike(input)) {
@@ -10,10 +10,7 @@ function validate(input, kingdoms) {
     return false;
   }
   const kingdom = parts[0];
-  if (
-    kingdoms.map(k => k.toLowerCase()).indexOf(kingdom.toLowerCase().trim()) !==
-    -1
-  ) {
+  if (isKingdom(kingdom, kingdoms)) {
     return true;
   }
   return false;
@@ -40,12 +37,12 @@ function getInputs(kingdoms) {
       console.log(`Allowed: ${kingdoms.join(", ")}`);
     }
   }
-  return inputs;
+  return getKindomMessagesHash(inputs);
 }
 exports.getInputs = getInputs;
 
-function getHashFromInputs(inputs) {
-  const normalized = inputs.map(input => input.split(",").map(i => i.trim()));
+function getKindomMessagesHash(inputs) {
+  const normalized = inputs.map(splitter(","));
   return normalized.reduce((acc, input) => {
     return {
       ...acc,
@@ -53,4 +50,4 @@ function getHashFromInputs(inputs) {
     };
   }, {});
 }
-exports.getHashFromInputs = getHashFromInputs;
+exports.getHashFromInputs = getKindomMessagesHash;
