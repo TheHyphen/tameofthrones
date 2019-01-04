@@ -7,15 +7,19 @@ function getUserInput(kingdoms) {
   }
   console.log("Enter messages for King Shah:");
   const inputs = {};
+
   while (true) {
     const input = readlineSync.question("");
-    if (input === "" && Object.keys(inputs).length !== 0) {
+    if (input === "" && getObjectLength(inputs) !== 0) {
       break;
     }
-    const { kingdom, message } = parseUserInput(input);
-    if (isKingdom(kingdom, kingdoms) && isStringLike(message)) {
+
+    const parsedInput = parseUserInput(input);
+    if (isValid(parsedInput)) {
+      const { kingdom, message } = parsedInput;
       inputs[kingdom] = message;
-      if (Object.keys(inputs).length >= kingdoms.length) {
+
+      if (getObjectLength(inputs) >= kingdoms.length) {
         break;
       }
     } else {
@@ -27,6 +31,14 @@ function getUserInput(kingdoms) {
   return inputs;
 }
 exports.getUserInput = getUserInput;
+
+function getObjectLength(object) {
+  return Object.keys(object).length;
+}
+
+function isValid({ kingdom, message }) {
+  return isKingdom(kingdom) && isStringLike(message);
+}
 
 function parseUserInput(input) {
   const parts = input.split(",").map(trim);
