@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const parseArg = (args, allowed) => {
+const getArgs = (args, allowed) => {
   const sliced = args.slice(2);
   const firstArg = sliced[0];
   if (allowed.indexOf(firstArg) === -1) {
@@ -8,53 +8,15 @@ const parseArg = (args, allowed) => {
   }
   return firstArg;
 };
-exports.parseArg = parseArg;
-
-const emblemsHash = {
-  space: "gorilla",
-  land: "panda",
-  water: "octopus",
-  ice: "mammoth",
-  air: "owl",
-  fire: "dragon"
-};
-const messages = [
-  "Summer is coming",
-  "a1d22n333a4444p",
-  "oaaawaala",
-  "zmzmzmzaztzozh",
-  "Go, risk it all",
-  "Let's swing the sword together",
-  "Die or play the tame of thrones",
-  "Ahoy! Fight for me with men and money",
-  "Drag on Martin!",
-  "When you play the tame of thrones, you win or you die.",
-  "What could we say to the Lord of Death? Game on?",
-  "Turn us away, and we will burn you first",
-  "Death is so terribly final, while life is full of possibilities.",
-  "You Win or You Die",
-  "His watch is Ended",
-  "Sphinx of black quartz, judge my dozen vows",
-  "Fear cuts deeper than swords, My Lord.",
-  "Different roads sometimes lead to the same castle.",
-  "A DRAGON IS NOT A SLAVE.",
-  "Do not waste paper",
-  "Go ring all the bells",
-  "Crazy Fredrick bought many very exquisite pearl, emerald and diamond jewels.",
-  "The quick brown fox jumps over a lazy dog multiple times.",
-  "We promptly judged antique ivory buckles for the next prize.",
-  "Walar Morghulis: All men must die."
-];
-
-const program = parseArg(process.argv, ["secret", "ballot"]);
+const program = getArgs(process.argv, ["goldencrown", "breakerofchains"]);
 
 switch (program) {
-  case "secret": {
-    require("./secret").run(emblemsHash);
+  case "goldencrown": {
+    require("./goldencrown").run();
     break;
   }
-  case "ballot": {
-    require("./ballot").run(emblemsHash, messages);
+  case "breakerofchains": {
+    require("./breakerofchains").run();
     break;
   }
 }

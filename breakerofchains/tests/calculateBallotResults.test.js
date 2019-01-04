@@ -1,8 +1,8 @@
 import test from "ava";
 
-const { getPollResults } = require("./../index");
+const calculateBallotResults = require("../calculateBallotResults");
 
-test("getPollResults should work", t => {
+test("calculateBallotResults should work", t => {
   const emblemsHash = {
     space: "gorilla",
     land: "panda",
@@ -35,7 +35,7 @@ test("getPollResults should work", t => {
     }
   ];
 
-  const output = getPollResults(participants, messages, emblemsHash);
+  const output = calculateBallotResults(participants, messages, emblemsHash);
 
   t.is(output.highScore, 2);
   t.is(output.scoresHash["space"], 2);
@@ -44,7 +44,7 @@ test("getPollResults should work", t => {
   t.deepEqual(output.alliesHash["space"], ["ice", "fire"]);
 });
 
-test("getPollResults should with no messages", t => {
+test("calculateBallotResults should with no messages", t => {
   const emblemsHash = {
     space: "gorilla",
     land: "panda",
@@ -56,7 +56,7 @@ test("getPollResults should with no messages", t => {
   const participants = ["space", "land", "water"];
   const messages = [];
 
-  const output = getPollResults(participants, messages, emblemsHash);
+  const output = calculateBallotResults(participants, messages, emblemsHash);
 
   t.is(output.highScore, 0);
   t.deepEqual(output.scoresHash, {
@@ -71,7 +71,7 @@ test("getPollResults should with no messages", t => {
   });
 });
 
-test("getPollResults should with no participants", t => {
+test("calculateBallotResults should with no participants", t => {
   const emblemsHash = {
     space: "gorilla",
     land: "panda",
@@ -83,7 +83,7 @@ test("getPollResults should with no participants", t => {
   const participants = [];
   const messages = [];
 
-  const output = getPollResults(participants, messages, emblemsHash);
+  const output = calculateBallotResults(participants, messages, emblemsHash);
 
   t.is(output.highScore, 0);
   t.deepEqual(output.scoresHash, {});

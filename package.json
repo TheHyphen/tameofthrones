@@ -6,7 +6,7 @@
   "bin": "index.js",
   "preferGlobal": true,
   "scripts": {
-    "test": "ava",
+    "test": "ava **/*.test.js",
     "test:watch": "ava --watch"
   },
   "repository": {
