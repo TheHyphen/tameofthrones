@@ -90,3 +90,15 @@ function isKingdom(input, kingdoms) {
   );
 }
 exports.isKingdom = isKingdom;
+
+function uniq() {
+  return (value, idx, self) => {
+    return self.indexOf(value) === idx;
+  };
+}
+exports.uniq = uniq;
+
+function isUndefined(value) {
+  return typeof value === "undefined";
+}
+exports.isUndefined = isUndefined;
