@@ -76,11 +76,11 @@ function trim(string) {
 }
 exports.trim = trim;
 
-function splitter(char) {
+function splitBy(char) {
   return string => string.split(char);
 }
 
-exports.splitter = splitter;
+exports.splitBy = splitBy;
 function isKingdom(input, kingdoms) {
   return (
     kingdoms
